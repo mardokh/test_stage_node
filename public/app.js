@@ -1,7 +1,7 @@
 // * ADMIN REGISTRATION * //
 document.getElementById("registration_form_container_id").addEventListener('submit', async (e) => {
 
-    // Prevent default submit behavior
+    // Prevent default submit
     e.preventDefault()
 
     // Catching input values
@@ -22,7 +22,7 @@ document.getElementById("registration_form_container_id").addEventListener('subm
             body: JSON.stringify(data)
         });
 
-        // Check response and handle accordingly
+        // Respons hadling
         if (response.status === 200) {
             const jsonResponse = await response.json() // Await the JSON parsing
             console.log(jsonResponse) // Log the parsed JSON response
@@ -40,7 +40,7 @@ document.getElementById("registration_form_container_id").addEventListener('subm
 // * LOGIN HANDLER * //
 document.getElementById("connection_form_container_id").addEventListener('submit', async (e) => {
 
-    // Prevent default submit behavior
+    // Prevent default submit
     e.preventDefault()
 
     // Catching input values
@@ -59,6 +59,7 @@ document.getElementById("connection_form_container_id").addEventListener('submit
             body: JSON.stringify(data)
         })
 
+        // Respons hadling
         if (response.status === 200) {
             const jsonResponse = await response.json() 
             console.log(jsonResponse) 
