@@ -1,0 +1,104 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color:antiquewhite;
+}
+
+.parent_container {
+    width: 500px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0.1px;
+}
+
+.buttons_container {
+    width: 400px;
+    display: flex;
+    align-items: end;
+}
+
+.buttons_container button {
+    width: 250px;
+    height: 40px;
+}
+
+.forms_container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+}
+
+.form_hidden {
+    visibility: hidden;
+}
+
+/* REGISTRATION FORM */
+
+.registration_form_container {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.registration_form_sub_container {
+    height: 350px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.registration_form_container input {
+    width: 100%;
+    height: 45px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.login_btn {
+    color: blue;
+    cursor: pointer;
+}
+
+.singUp_btn {
+    color: blue;
+    cursor: pointer;
+}
+
+
+/* CONNECTION FORM */
+
+.connection_form_container {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.connection_form_sub_container {
+    height: 180px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.connection_form_container input {
+    width: 100%;
+    height: 45px;
+    box-sizing: border-box;
+    padding: 10px;
+}

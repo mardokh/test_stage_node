@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Home</title>
+    <script src="./app.js" async></script>
+</head>
+<body>
+    <section class="parent_container">
+        <div class="forms_container">
+            <!-- REGISTRATION FORM -->
+            <form class="registration_form_container form_hidden" id="registration_form_container_id">
+                <div class="registration_form_sub_container">
+                    <input type="text" placeholder="first name" id="registration_firsName_input"/>
+                    <input type="text" placeholder="last name" id="registration_lastNameçinput"/>
+                    <input type="email" placeholder="email address" id="registration_email_input"/>
+                    <input type="password" placeholder="password" id="registration_password_input"/>
+                    <input type="submit" value="registration"/>
+                    <p id="registration_form_error"></p>
+                </div>
+                <div>
+                    <p class="login_btn" id="login_button_id">Log-in</p>
+                </div>
+            </form>
+            <!-- CONNECTION FORM  -->
+            <form class="connection_form_container" id="connection_form_container_id">
+                <div class="connection_form_sub_container">
+                    <input type="email" placeholder="email address" id="email_connection_input"/>
+                    <input type="password" placeholder="password" id="password_connection_input"/>
+                    <input type="submit" value="registration"/>
+                </div>
+                <div>
+                    <p class="singUp_btn" id="singUp_button_id">Sing-Up</p>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
