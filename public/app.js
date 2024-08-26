@@ -1,4 +1,5 @@
-// * ADMIN REGISTRATION * //
+
+// * REGISTRATION HANDLER * //
 document.getElementById("registration_form_container_id").addEventListener('submit', async (e) => {
 
     // Prevent default submit
@@ -12,26 +13,31 @@ document.getElementById("registration_form_container_id").addEventListener('subm
         password: document.getElementById("registration_password_input").value
     }
 
+    // Error element displayer
+    const errorElement = document.getElementById("registration_form_error")
+
     try {
         // Send credentials to the server
-        const response = await fetch("http://localhost:3000/register", {
+        const response = await fetch("http://localhost:3000/api/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
-        });
+        })
+
+        // Extrad json response
+        const jsonResponse = await response.json()
 
         // Respons hadling
         if (response.status === 200) {
-            const jsonResponse = await response.json() // Await the JSON parsing
-            console.log(jsonResponse) // Log the parsed JSON response
+            window.location.href = "http://localhost:3000/main"
         } else {
-            document.getElementById("registration_form_error").innerHTML = "Registration failed. Please try again."
+            errorElement.innerHTML = jsonResponse.message
         }
     } 
     catch (err) {
-        console.log("An error occurred during the registration process", err)
+        errorElement.innerHTML = "An server side error occurred during the registration process"
     }
 
 })
@@ -49,9 +55,12 @@ document.getElementById("connection_form_container_id").addEventListener('submit
         password: document.getElementById("password_connection_input").value
     }
 
+    // Error element displayer
+    const errorElement = document.getElementById("connection_form_connect_failed")
+
     try {
         // Send credentials to the server
-        const response = await fetch("http://localhost:3000/connection", {
+        const response = await fetch("http://localhost:3000/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -59,17 +68,22 @@ document.getElementById("connection_form_container_id").addEventListener('submit
             body: JSON.stringify(data)
         })
 
+        // Extrad json response
+        const jsonResponse = await response.json()
+
         // Respons hadling
-        if (response.status === 200) {
-            const jsonResponse = await response.json() 
-            console.log(jsonResponse) 
-        }
-        else {
-            console.log('password or email failed')
+        switch(response.status) {
+            case 200:
+                localStorage.setItem('admin_token', jsonResponse.token)
+              break
+            case 401:
+            case 400:    
+                errorElement.innerHTML = jsonResponse.message
+              break
         }
     }
     catch (err) {
-        console.log("An error occurred during the connect process", err)
+        errorElement.innerHTML = "An server side error occurred during the registration process"
     }
 
 })
@@ -90,4 +104,36 @@ connectionButton.addEventListener('click', () => {
     connectionFrom.classList.remove('form_hidden')
 })
 
+
+/* DASHBOARD ACCESS CHECK */
+
+if (window.location.pathname === '/dashboard.html') {
+
+    document.addEventListener("DOMContentLoaded", async () => {
+
+        const response = await fetch("http://localhost:3000/api/user", {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('admin_token')}`
+            }
+        })
+
+        // Extrad json response
+        const jsonResponse = await response.json()
+
+        // Respons hadling
+        switch(response.status) {
+            case 200:
+                document.getElementById("dashboard_firstName").innerHTML = jsonResponse.data.firstName
+                document.getElementById("dashboard_lastName").innerHTML = jsonResponse.data.lastName
+                document.getElementById("dashboard_email").innerHTML = jsonResponse.data.email
+              break
+            case 400:
+            case 404:    
+                document.getElementById("dashboard_erro").innerHTML = jsonResponse.message
+              break
+        }
+
+    })
+}
 
