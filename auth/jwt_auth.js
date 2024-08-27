@@ -1,21 +1,23 @@
 const jwt = require('jsonwebtoken')
 
 
-exports.checkToken = (req, res, next) => {
+exports.checkToken = async (req, res, next) => {
 
-    const token = req.headers['authorization']
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
 
     if (!token) {
         return res.status(403).json({ message: 'Missing Token' })
     }
 
     try {
-        const decoded = jwt.verify(token, 'chakibenaissa')
+        const decoded = await jwt.verify(token, 'chakibenaissa')
         req.user = decoded
-    }
+    } 
     catch (err) {
-        return res.status(401).json({ message: 'Bad Token' })
+        return res.status(401).json({ message: 'Bad token' })
     }
 
     return next()
 }
+

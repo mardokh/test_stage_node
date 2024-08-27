@@ -1,7 +1,6 @@
 // Export modules
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const path = require('path')
 const User = require('../models/user')
 
 
@@ -70,10 +69,10 @@ exports.loginUser = async (req, res) => {
 exports.getUser = async (req, res) => {
 
   try {
-    const id = req.user._id
+    const id = req.user.id
     
     if (!id) {
-      return res.status(400).json({message: 'User id missing !'})
+      return res.status(400).json({message: 'Missing user id !'})
     }
 
     const user = await User.findById(id)
@@ -84,8 +83,8 @@ exports.getUser = async (req, res) => {
 
     return res.json({data: user})
   }
-  catch (err) {
-    return res.status(500).json({ message: 'Database error!', error: err.message, stack: err.stack })
+  catch (error) {
+    return res.status(500).json({ message: 'Database error!', error: error.message, stack: error.stack })
   }
 
 }

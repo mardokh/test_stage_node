@@ -75,6 +75,7 @@ document.getElementById("connection_form_container_id").addEventListener('submit
         switch(response.status) {
             case 200:
                 localStorage.setItem('admin_token', jsonResponse.token)
+                window.location.href = "http://localhost:3000/dashboard"
               break
             case 401:
             case 400:    
@@ -103,37 +104,4 @@ connectionButton.addEventListener('click', () => {
     registrationFrom.classList.add('form_hidden')
     connectionFrom.classList.remove('form_hidden')
 })
-
-
-/* DASHBOARD ACCESS CHECK */
-
-if (window.location.pathname === '/dashboard.html') {
-
-    document.addEventListener("DOMContentLoaded", async () => {
-
-        const response = await fetch("http://localhost:3000/api/user", {
-            method: "GET",
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('admin_token')}`
-            }
-        })
-
-        // Extrad json response
-        const jsonResponse = await response.json()
-
-        // Respons hadling
-        switch(response.status) {
-            case 200:
-                document.getElementById("dashboard_firstName").innerHTML = jsonResponse.data.firstName
-                document.getElementById("dashboard_lastName").innerHTML = jsonResponse.data.lastName
-                document.getElementById("dashboard_email").innerHTML = jsonResponse.data.email
-              break
-            case 400:
-            case 404:    
-                document.getElementById("dashboard_erro").innerHTML = jsonResponse.message
-              break
-        }
-
-    })
-}
 
