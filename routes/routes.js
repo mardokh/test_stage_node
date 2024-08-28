@@ -2,14 +2,14 @@
 const express = require('express');
 const path = require('path')
 const controller = require('../controllers/controllers.js')
-const jwt_auth = require('../auth/jwt_auth.js')
+const jwt_auth = require('../auth/jwt.auth.js')
 
 
 // Initialize express router
 const router = express.Router()
 
 // Main page
-router.get('/main', (req, res) => {
+router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'index.html'))
 })
 

@@ -84,7 +84,7 @@ document.getElementById("registration_form_container_id").addEventListener('subm
 
         // Respons hadling
         if (response.status === 200) {
-            window.location.href = "http://localhost:3000/main"
+            window.location.href = "http://localhost:3000"
         } else {
             registerError.innerHTML = jsonResponse.message
         }

@@ -24,7 +24,7 @@ window.onload = async () => {
             case 403:    
             case 404:
                 console.log(jsonResponse.message)    
-                window.location.href = "http://localhost:3000/main"
+                window.location.href = "http://localhost:3000"
               break
         }
     }
@@ -38,6 +38,6 @@ window.onload = async () => {
 //* LOGOUT HANDLER *//
 const lougoutBtn = document.getElementById("dashboard_logout_btn").addEventListener("click", () => {
     localStorage.removeItem("admin_token")
-    window.location.href = "http://localhost:3000/main"
+    window.location.href = "http://localhost:3000"
 })
 
