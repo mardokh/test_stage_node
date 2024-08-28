@@ -4,15 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <script src="./login.js" async></script>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./dashboard.js" async></script>
 </head>
 <body>
     <h1 id="eleme_h1">Welcom to the Dashboard</h1>
-    <div>
-        <p id="dashboard_firstName"></p>
-        <p id="dashboard_lastName"></p>
-        <p id="dashboard_email"></p>
-    </div>
-    <p id="dashboard_erro"></p>
+
+    <section>
+        <div>
+            <p id="dashboard_firstName"></p>
+            <p id="dashboard_lastName"></p>
+            <p id="dashboard_email"></p>
+        </div>
+        <button id="dashboard_logout_btn">logout</button>
+    </section>
+
+    <section class="dashboard_squares_parent_container">
+        <div class="dashboard_squares_inputs_container">
+            <input type="number" value="1" id="dashboard_squares_inputs_1"/>
+            <input type="number" value="1" id="dashboard_squares_inputs_2"/>
+        </div>
+        <div class="dashboard_squares_container"></div>
+    </section>
+
 </body>
 </html>

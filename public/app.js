@@ -1,23 +1,76 @@
 
+// * EMAIL VALIDATION * // 
+function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return regex.test(email)
+}
+
+// * PASSWORD VALIDATION * // 
+function validatePassword(password) {
+    const regex = /^(?=.*[A-Z])(?=.*\d.*\d).+$/
+    return regex.test(password)
+}
+
 // * REGISTRATION HANDLER * //
 document.getElementById("registration_form_container_id").addEventListener('submit', async (e) => {
 
     // Prevent default submit
     e.preventDefault()
 
+    // Inputs fields elements
+    const FirstName = document.getElementById("registration_firstName_input")
+    const LastName = document.getElementById("registration_lastName_input")
+    const Email = document.getElementById("registration_email_input")
+    const Password = document.getElementById("registration_password_input")
+
+
+    // Errors elements displayers
+    const registerError = document.getElementById("registration_form_error")
+    const invalidEmail = document.getElementById("registration_invalid_email")
+    const invalidPassword = document.getElementById("registration_invalid_password")
+
     // Catching input values
     const data = {
-        firstName: document.getElementById("registration_firsName_input").value,
-        lastName: document.getElementById("registration_lastNameçinput").value,
-        email: document.getElementById("registration_email_input").value,
-        password: document.getElementById("registration_password_input").value
+        firstName: FirstName.value,
+        lastName: LastName.value,
+        email: Email.value,
+        password: Password.value
     }
 
-    // Error element displayer
-    const errorElement = document.getElementById("registration_form_error")
+    let stopCode = false
 
+    for (const key in data) {
+        if (data[key] === "") {
+            document.getElementById(`registration_${key}_input`).style.border = "2px solid red"
+            stopCode = true
+        }
+    }
+
+    // Validate email
+    if (!validateEmail(data.email)) {
+        invalidEmail.classList.remove("registration_form_hidden_element")
+        invalidEmail.innerHTML = "Email field required a valid email address format"
+        Email.style.border = "2px solid red"
+        stopCode = true
+    }
+
+    // Validate password
+    if (!validatePassword(data.password)) {
+        invalidPassword.classList.remove("registration_form_hidden_element")
+        invalidPassword.innerHTML = "Password must contain at least one capital letter and two numbers"
+        Password.style.border = "2px solid red"
+        stopCode = true
+    }
+
+    if (stopCode) {
+        registerError.classList.remove("registration_form_hidden_element")
+        registerError.innerHTML = "All form fields are required"
+        return
+    }
+    
     try {
         // Send credentials to the server
+        console.log('is in try catch bloc')
         const response = await fetch("http://localhost:3000/api/register", {
             method: "POST",
             headers: {
@@ -33,11 +86,11 @@ document.getElementById("registration_form_container_id").addEventListener('subm
         if (response.status === 200) {
             window.location.href = "http://localhost:3000/main"
         } else {
-            errorElement.innerHTML = jsonResponse.message
+            registerError.innerHTML = jsonResponse.message
         }
     } 
     catch (err) {
-        errorElement.innerHTML = "An server side error occurred during the registration process"
+        registerError.innerHTML = "An server side error occurred during the registration process"
     }
 
 })
@@ -105,3 +158,12 @@ connectionButton.addEventListener('click', () => {
     connectionFrom.classList.remove('form_hidden')
 })
 
+
+// * LOGGED IN REDIRECTION * //
+window.onload = async () => {
+
+    if (localStorage.getItem("admin_token")) {
+        window.location.href = "http://localhost:3000/dashboard"
+    }
+    
+}

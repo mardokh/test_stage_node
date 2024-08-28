@@ -13,12 +13,14 @@
             <!-- REGISTRATION FORM -->
             <form class="registration_form_container form_hidden" id="registration_form_container_id">
                 <div class="registration_form_sub_container">
-                    <input type="text" placeholder="first name" id="registration_firsName_input"/>
-                    <input type="text" placeholder="last name" id="registration_lastNameçinput"/>
+                    <input type="text" placeholder="first name" id="registration_firstName_input"/>
+                    <input type="text" placeholder="last name" id="registration_lastName_input"/>
                     <input type="email" placeholder="email address" id="registration_email_input"/>
+                    <p class="registration_form_hidden_element" id="registration_invalid_email"></p>
                     <input type="password" placeholder="password" id="registration_password_input"/>
+                    <p class="registration_form_hidden_element" id="registration_invalid_password"></p>
                     <input type="submit" value="registration"/>
-                    <p id="registration_form_error"></p>
+                    <p class="registration_form_hidden_element" id="registration_form_error"></p>
                 </div>
                 <div>
                     <p class="login_btn" id="login_button_id">Log-in</p>
