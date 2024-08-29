@@ -44,27 +44,29 @@ const lougoutBtn = document.getElementById("dashboard_logout_btn").addEventListe
 
 
 // * SQUARE PAVING * //
-    const rowInput = document.getElementById('rowInput')
-    const columnInput = document.getElementById('columnInput')
-    const squearesContainer = document.getElementById('dashboard_squares_container_id')
+const rowInput = document.getElementById('rowInput')
+const columnInput = document.getElementById('columnInput')
+const squearesContainer = document.getElementById('dashboard_squares_container_id')
 
-    function generateSquares() {
-        const rows = parseInt(rowInput.value)
-        const cols = parseInt(columnInput.value)
+function generateSquares() {
+    const rows = parseInt(rowInput.value)
+    const cols = parseInt(columnInput.value)
 
-        squearesContainer.style.gridTemplateRows = `repeat(${rows}, auto)`
-        squearesContainer.style.gridTemplateColumns = `repeat(${cols}, auto)`
-        squearesContainer.innerHTML = ''
+    squearesContainer.style.gridTemplateRows = `repeat(${rows}, auto)`
+    squearesContainer.style.gridTemplateColumns = `repeat(${cols}, auto)`
+    squearesContainer.innerHTML = ''
 
-        for (let i = 0; i < rows * cols; i++) {
-            const square = document.createElement('div')
-            square.classList.add('dashboard_square')
-            squearesContainer.appendChild(square)
-        }
+    let rowCol = rows === 1 && cols === 1 ? rows * cols : rows + cols - 1
+
+    for (let i = 0; i < rowCol; i++) {
+        const square = document.createElement('div')
+        square.classList.add('dashboard_square')
+        squearesContainer.appendChild(square)
     }
+}
 
-    rowInput.addEventListener('input', generateSquares)
-    columnInput.addEventListener('input', generateSquares)
+rowInput.addEventListener('input', generateSquares)
+columnInput.addEventListener('input', generateSquares)
 
-    generateSquares()
+generateSquares()
 
