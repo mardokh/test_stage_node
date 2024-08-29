@@ -37,8 +37,10 @@ document.getElementById("registration_form_container_id").addEventListener('subm
         password: Password.value
     }
 
+    // Stope code variable
     let stopCode = false
 
+    // Check empty fields
     for (const key in data) {
         if (data[key] === "") {
             document.getElementById(`registration_${key}_input`).style.border = "2px solid red"
@@ -62,6 +64,7 @@ document.getElementById("registration_form_container_id").addEventListener('subm
         stopCode = true
     }
 
+    // Stop rest of the code
     if (stopCode) {
         registerError.classList.remove("registration_form_hidden_element")
         registerError.innerHTML = "All form fields are required"

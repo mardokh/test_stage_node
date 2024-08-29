@@ -41,3 +41,30 @@ const lougoutBtn = document.getElementById("dashboard_logout_btn").addEventListe
     window.location.href = "http://localhost:3000"
 })
 
+
+
+// * SQUARE PAVING * //
+    const rowInput = document.getElementById('rowInput')
+    const columnInput = document.getElementById('columnInput')
+    const squearesContainer = document.getElementById('dashboard_squares_container_id')
+
+    function generateSquares() {
+        const rows = parseInt(rowInput.value)
+        const cols = parseInt(columnInput.value)
+
+        squearesContainer.style.gridTemplateRows = `repeat(${rows}, auto)`
+        squearesContainer.style.gridTemplateColumns = `repeat(${cols}, auto)`
+        squearesContainer.innerHTML = ''
+
+        for (let i = 0; i < rows * cols; i++) {
+            const square = document.createElement('div')
+            square.classList.add('dashboard_square')
+            squearesContainer.appendChild(square)
+        }
+    }
+
+    rowInput.addEventListener('input', generateSquares)
+    columnInput.addEventListener('input', generateSquares)
+
+    generateSquares()
+

@@ -8,7 +8,7 @@ body {
     background-color:antiquewhite;
 }
 
-.parent_container {
+.parent_container {  
     width: 500px;
     height: 600px;
     display: flex;
@@ -32,7 +32,7 @@ body {
 
 .forms_container {
     width: 400px;
-    height: 400px;
+    height: 500px;
     position: relative;
 }
 
@@ -44,7 +44,7 @@ body {
 
 .registration_form_container {
     width: 400px;
-    height: 400px;
+    height: 500px;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -81,8 +81,22 @@ body {
 }
 
 #registration_invalid_email, #registration_invalid_password, #registration_form_error {
-    font-size: 12px;
+    font-size: 13px;
     color: red;
+    position: absolute;
+}
+
+#registration_invalid_email {
+    top: 260px;
+}
+
+#registration_invalid_password {
+    top: 335px;
+}
+
+#registration_form_error {
+    top: 440px;
+    font-size: 14px;
 }
 
 /* CONNECTION FORM */
@@ -114,28 +128,27 @@ body {
 
 
 /* DASHBOARD PAGE */
-.dashboard_squares_parent_container {
-    width: 90%;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+.dashboard_squares_sub_container {
+    text-align: center;
 }
 
-.dashboard_squares_container {
-    height: 200px;
-    width: 80%;
+.dashboard_squares_inputs_container {
+    margin-bottom: 20px;
 }
 
 .dashboard_squares_inputs_container input {
     height: 40px;
     padding: 10px;
-    font-size: 18px;
 }
 
-.dashboard_squares {
-    width: 100px;
-    height: 100px;
-    background-color: lightseagreen;
+.dashboard_squares_container {
+    display: grid;
+    gap: 5px;
+}
+
+.dashboard_square {
+    width: 50px;
+    height: 50px;
+    background-color: lightblue;
+    border: 1px solid #000;
 }
