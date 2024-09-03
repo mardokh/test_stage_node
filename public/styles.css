@@ -132,6 +132,9 @@ body {
 .dashboard_user_sub_container {
     width: 60%;
     margin: 50px auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     padding-top: 30px;
     padding-bottom: 30px;
     background-color: rgb(251, 251, 251);
@@ -143,11 +146,9 @@ body {
 }
 
 .dashboard_user_info_container {
-    width: 40%;
+    width: 30%;
     height: 200px;
     padding: 20px;
-    border: 1px solid gainsboro;
-    margin: 0 auto;
     color: rgb(86, 86, 86);
 }
 
@@ -204,6 +205,7 @@ body {
     display: grid;
     gap: 5px;
     width: 100%;
+    overflow-x: scroll;
 }
 
 .dashboard_square {
@@ -211,4 +213,14 @@ body {
     height: 50px;
     background-color: lightblue;
     border: 1px solid #000;
+}
+
+.dashboard_profil_pic_container {
+    width: 200px;
+    height: 200px;
+    border: 1px solid gainsboro;
+    background-image: url("./profil.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
