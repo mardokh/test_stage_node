@@ -2,7 +2,9 @@ body {
     background-color:antiquewhite;
 }
 
-.parent_container {  
+/* FORM LOGIN/REGISTER */ 
+
+.section_container {  
     width: 500px;
     height: 600px;
     display: flex;
@@ -14,30 +16,7 @@ body {
     margin: 100px auto;
 }
 
-.buttons_container {
-    width: 400px;
-    display: flex;
-    align-items: end;
-}
-
-.buttons_container button {
-    width: 250px;
-    height: 40px;
-}
-
-.forms_container {
-    width: 400px;
-    height: 500px;
-    position: relative;
-}
-
-.form_hidden {
-    visibility: hidden;
-}
-
-/* REGISTRATION FORM */
-
-.registration_form_container {
+.form_container {
     width: 400px;
     height: 500px;
     position: absolute;
@@ -46,7 +25,7 @@ body {
     align-items: center;
 }
 
-.registration_form_sub_container {
+.form_sub_container {
     height: 350px;
     width: 100%;
     display: flex;
@@ -54,32 +33,31 @@ body {
     justify-content: space-between;
 }
 
-.registration_form_container input {
+.form input {
     width: 100%;
     height: 45px;
     box-sizing: border-box;
     padding: 10px;
 }
 
-.login_btn {
+.submit_btn {
     color: blue;
     cursor: pointer;
 }
 
+/* not found in index.html */
 .singUp_btn {
     color: blue;
     cursor: pointer;
 }
 
-.registration_form_hidden_element {
-    display: none;
-}
-
+/*
 #registration_invalid_email, #registration_invalid_password, #registration_form_error {
     font-size: 13px;
     color: red;
     position: absolute;
 }
+
 
 #registration_invalid_email {
     top: 260px;
@@ -93,32 +71,15 @@ body {
     top: 440px;
     font-size: 14px;
 }
+*/
 
-/* CONNECTION FORM */
-
-.connection_form_container {
-    width: 400px;
-    height: 400px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+.hidden {
+    display: none;
 }
 
-.connection_form_sub_container {
-    height: 180px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.connection_form_container input {
-    width: 100%;
-    height: 45px;
-    box-sizing: border-box;
-    padding: 10px;
+#toggle_btn {
+    cursor: pointer;
+    color: blue;
 }
 
 
@@ -138,7 +99,6 @@ body {
     padding-top: 30px;
     padding-bottom: 30px;
     background-color: rgb(251, 251, 251);
-
 }
 
 .dashboard_user_title {
@@ -177,7 +137,6 @@ body {
 
 .dashboard_squares_sub_container {
     width: 60%;
-
 }
 
 .dashboard_squares_inputs_container {
@@ -222,5 +181,4 @@ body {
     background-image: url("./profil.png");
     background-repeat: no-repeat;
     background-size: cover;
-
 }
