@@ -15,9 +15,9 @@ window.onload = async () => {
         // Respons hadling
         switch(response.status) {
             case 200:
-                document.getElementById("dashboard_firstName").innerHTML = jsonResponse.data.firstName
-                document.getElementById("dashboard_lastName").innerHTML = jsonResponse.data.lastName
-                document.getElementById("dashboard_email").innerHTML = jsonResponse.data.email
+                document.getElementById("dashboard_user_firstName").innerHTML = jsonResponse.data.firstName
+                document.getElementById("dashboard_user_lastName").innerHTML = jsonResponse.data.lastName
+                document.getElementById("dashboard_user_email").innerHTML = jsonResponse.data.email
               break
             case 400:
             case 401:    
@@ -56,7 +56,8 @@ function generateSquares() {
     squearesContainer.style.gridTemplateColumns = `repeat(${cols}, auto)`
     squearesContainer.innerHTML = ''
 
-    let rowCol = rows === 1 && cols === 1 ? rows * cols : rows + cols - 1
+    //let rowCol = rows === 1 && cols === 1 ? rows * cols : rows + cols - 1
+    let rowCol = rows * cols
 
     for (let i = 0; i < rowCol; i++) {
         const square = document.createElement('div')
