@@ -1,21 +1,27 @@
 
-// * EMAIL VALIDATION * // 
+// * CONST * //
+const FirstName = document.getElementById("firstName")
+const LastName = document.getElementById("lastName")
+const Email = document.getElementById("email")
+const Password = document.getElementById("password")
+const toggleBtn = document.getElementById("toggle_btn")
+const invalidForm = document.getElementById("invalid_form")
+const invalidEmail = document.getElementById("invalid_email")
+const invalidPassword = document.getElementById("invalid_password")
+
+
+// * REUSABLE FUNCTIONS * //
+// email validation
 function validateEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return regex.test(email)
 }
-
-// * PASSWORD VALIDATION * // 
+// password validation
 function validatePassword(password) {
     const regex = /^(?=.*[A-Z])(?=.*\d.*\d).+$/
     return regex.test(password)
 }
 
-// Inputs fields elements
-const FirstName = document.getElementById("firstName")
-const LastName = document.getElementById("lastName")
-const Email = document.getElementById("email")
-const Password = document.getElementById("password")
 
 // * FROM HANDLER * //
 document.getElementById("form").addEventListener('submit', async (e) => {
@@ -23,7 +29,9 @@ document.getElementById("form").addEventListener('submit', async (e) => {
     // Prevent default submit
     e.preventDefault()
 
-    // * SING-IN * //
+    // **  SING-IN  ** //
+
+    // Check form fields
     if (!FirstName.value && !LastName.value) {
 
         // Catching input values
@@ -31,9 +39,6 @@ document.getElementById("form").addEventListener('submit', async (e) => {
             email: Email.value,
             password: Password.value
         }
-
-        // Error element displayer
-        const errorElement = document.getElementById("invalid_form")
 
         try {
             // Send credentials to the server
@@ -56,21 +61,18 @@ document.getElementById("form").addEventListener('submit', async (e) => {
                 break
                 case 401:
                 case 400:    
-                    errorElement.innerHTML = jsonResponse.message
+                 invalidForm.innerHTML = jsonResponse.message
                 break
             }
         }
         catch (err) {
-            errorElement.innerHTML = "An server side error occurred during the registration process"
+         invalidForm.innerHTML = "An server side error occurred during the registration process"
         }
     }
     else {
-        // * SING-UP * //
-        // Errors elements displayers
-        const registerError = document.getElementById("invalid_form")
-        const invalidEmail = document.getElementById("invalid_email")
-        const invalidPassword = document.getElementById("invalid_password")
 
+        // **  SING-UP  ** //
+     
         // Catching input values
         const data = {
             firstName: FirstName.value,
@@ -108,8 +110,8 @@ document.getElementById("form").addEventListener('submit', async (e) => {
 
         // Stop rest of the code
         if (stopCode) {
-            registerError.classList.remove("hidden")
-            registerError.innerHTML = "All form fields are required"
+            invalidForm.classList.remove("hidden")
+            invalidForm.innerHTML = "All form fields are required"
             return
         }
         
@@ -130,19 +132,17 @@ document.getElementById("form").addEventListener('submit', async (e) => {
             if (response.status === 200) {
                 window.location.href = "http://localhost:3000"
             } else {
-                registerError.innerHTML = jsonResponse.message
+                invalidForm.innerHTML = jsonResponse.message
             }
         } 
         catch (err) {
-            registerError.innerHTML = "An server side error occurred during the registration process"
+            invalidForm.innerHTML = "An server side error occurred during the registration process"
         }
     }
 })
 
 
 // * FORM TOGGLE HANDLER * //
-const toggleBtn = document.getElementById("toggle_btn")
-
 toggleBtn.addEventListener("click", () => {
 
     switch (toggleBtn.textContent) {
