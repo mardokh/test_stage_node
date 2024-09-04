@@ -56,7 +56,6 @@ document.getElementById("form").addEventListener('submit', async (e) => {
             // Respons hadling
             switch(response.status) {
                 case 200:
-                    localStorage.setItem('admin_token', jsonResponse.token)
                     window.location.href = "http://localhost:3000/dashboard"
                 break
                 case 401:
@@ -129,7 +128,7 @@ document.getElementById("form").addEventListener('submit', async (e) => {
             const jsonResponse = await response.json()
 
             // Respons hadling
-            if (response.status === 200) {
+            if (response.status === 201) {
                 window.location.href = "http://localhost:3000"
             } else {
                 invalidForm.innerHTML = jsonResponse.message
@@ -164,9 +163,11 @@ toggleBtn.addEventListener("click", () => {
 
 
 // * LOGGED IN REDIRECTION * //
+/*
 window.onload = async () => {
 
     if (localStorage.getItem("admin_token")) {
         window.location.href = "http://localhost:3000/dashboard"
     }   
 }
+*/

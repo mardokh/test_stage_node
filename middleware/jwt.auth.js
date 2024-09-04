@@ -3,11 +3,10 @@ const jwt = require('jsonwebtoken')
 
 exports.checkToken = async (req, res, next) => {
 
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
+    const token = req.cookies.token
 
     if (!token) {
-        return res.status(403).json({ message: 'Missing Token' })
+        return res.status(403).json({ message: 'Forbidden' })
     }
 
     try {
@@ -15,7 +14,7 @@ exports.checkToken = async (req, res, next) => {
         req.user = decoded
     } 
     catch (err) {
-        return res.status(401).json({ message: 'Bad token' })
+        return res.status(401).json({ message: 'Unauthorized' })
     }
 
     return next()

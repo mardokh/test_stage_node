@@ -3,10 +3,7 @@ window.onload = async () => {
 
     try {
         const response = await fetch("http://localhost:3000/api/user", {
-            method: "GET",
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('admin_token')}`
-            }
+            method: "GET"
         })
     
         // Extrad json response
@@ -23,7 +20,6 @@ window.onload = async () => {
             case 401:    
             case 403:    
             case 404:
-                console.log(jsonResponse.message)    
                 window.location.href = "http://localhost:3000"
               break
         }
@@ -36,11 +32,12 @@ window.onload = async () => {
 
 
 //* LOGOUT HANDLER *//
+/*
 const lougoutBtn = document.getElementById("dashboard_logout_btn").addEventListener("click", () => {
     localStorage.removeItem("admin_token")
     window.location.href = "http://localhost:3000"
 })
-
+*/
 
 
 // * SQUARE PAVING * //
