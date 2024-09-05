@@ -58,6 +58,10 @@ body {
     cursor: pointer;
 }
 
+.form_invalid {
+    color: red;
+}
+
 /* not found in index.html */
 .singUp_btn {
     color: blue;

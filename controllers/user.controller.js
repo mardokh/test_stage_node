@@ -21,7 +21,7 @@ exports.registerUser = async (req, res) => {
 
     // Check if user exist
     if (user) {
-      return res.status(400).json({message: "This user already exist", type: "Failed"})
+      return res.status(409).json({message: "This user already exist"})
     }
 
     // Hash password
@@ -135,6 +135,24 @@ exports.logoutUser = async (req, res) => {
       path: '/'
     })
     res.redirect('/')
+  }
+  catch (err) {
+    console.log(err)
+    return res.status(500).json({ message: 'Server error !', type: "Failed"})
+  }
+}
+
+// Check user session
+exports.checkSession = async (req, res) => {
+
+  try {
+    // Check if user returner
+    if (!req.user) {
+      return res.status(401).json({message: "Disconnected status", type: "UnAuthorized"})
+    }
+
+    // Success response
+    return res.json({message: "Logged-in status", type: "Success"})
   }
   catch (err) {
     console.log(err)

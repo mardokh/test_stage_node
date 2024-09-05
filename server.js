@@ -29,5 +29,5 @@ app.use('/api', endPoint)
 
 // Start server
 app.listen(3000, () => {
-    console.log('Server is running', process.env.JWT_SECRET)
+    console.log('Server is running')
 })

@@ -17,5 +17,8 @@ endPoint.post('/login', controller.loginUser)
 // Logout user
 endPoint.get('/logout', controller.logoutUser)
 
+// Check user session
+endPoint.get('/session', middleware.checkToken, controller.checkSession)
+
 
 module.exports = endPoint

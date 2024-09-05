@@ -60,7 +60,7 @@ document.getElementById("form").addEventListener('submit', async (e) => {
                     window.location.href = "http://localhost:3000/dashboard"
                 break
                 case 401:
-                case 400:    
+                case 400:
                  invalidForm.innerHTML = jsonResponse.message
                 break
             }
@@ -129,10 +129,15 @@ document.getElementById("form").addEventListener('submit', async (e) => {
             const jsonResponse = await response.json()
 
             // Respons hadling
-            if (response.status === 201) {
-                window.location.href = "http://localhost:3000"
-            } else {
-                invalidForm.innerHTML = jsonResponse.message
+            switch (response.status) {
+                case 201:
+                    window.location.href = "http://localhost:3000"
+                break;
+                case 400:    
+                case 409:
+                    invalidForm.classList.remove("hidden")
+                    invalidForm.innerHTML = jsonResponse.message
+                break;
             }
         } 
         catch (err) {
@@ -165,3 +170,23 @@ toggleBtn.addEventListener("click", () => {
     }
     
 })
+
+
+// ** CHECK LOGGED USER ** //
+window.onload = async () => {
+
+    try {
+        const response = await fetch("http://localhost:3000/api/session", {
+            method: "GET"
+        })
+
+        // Respons hadling
+        console.log(response)
+        if (response.status === 200) {
+            window.location.href = "http://localhost:3000/dashboard"
+        }
+    }
+    catch (err) {
+        console.error("Error : ", err)
+    }
+}
