@@ -33,6 +33,19 @@ body {
     justify-content: space-between;
 }
 
+.singUP {
+    height: 450px;
+}
+
+.singIn {
+    height: 300px;
+}
+
+.form_sub_container input {
+    height: 40px;
+    padding: 10px;
+}
+
 .form input {
     width: 100%;
     height: 45px;

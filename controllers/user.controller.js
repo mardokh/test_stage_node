@@ -78,7 +78,7 @@ exports.loginUser = async (req, res) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email
-    }, 'chakibenaissa', {expiresIn: "24h"})
+    }, process.env.JWT_SECRET, {expiresIn: "24h"})
 
     // Set token cookie
     res.cookie('token', token, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000})

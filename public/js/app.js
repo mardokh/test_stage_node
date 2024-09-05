@@ -8,6 +8,7 @@ const toggleBtn = document.getElementById("toggle_btn")
 const invalidForm = document.getElementById("invalid_form")
 const invalidEmail = document.getElementById("invalid_email")
 const invalidPassword = document.getElementById("invalid_password")
+const formSubContainer = document.querySelector(".form_sub_container")
 
 
 // * REUSABLE FUNCTIONS * //
@@ -149,11 +150,15 @@ toggleBtn.addEventListener("click", () => {
             FirstName.classList.remove("hidden")
             LastName.classList.remove("hidden")
             toggleBtn.textContent = "sing-in"
+            formSubContainer.classList.remove("singIn")
+            formSubContainer.classList.add("singUP")
             break;
         case "sing-in":
             FirstName.classList.add("hidden")
             LastName.classList.add("hidden")
             toggleBtn.textContent = "sing-up"
+            formSubContainer.classList.remove("singUP")
+            formSubContainer.classList.add("singIn")
             break;
         default:
             break;
