@@ -37,10 +37,12 @@ const rowInput = document.getElementById('rowInput')
 const columnInput = document.getElementById('columnInput')
 const squearesContainer = document.getElementById('dashboard_squares_displayer')
 
+// Squares generator
 function generateSquares() {
     const rows = parseInt(rowInput.value)
     const cols = parseInt(columnInput.value)
 
+    // Define rows and cols
     squearesContainer.style.gridTemplateRows = `repeat(${rows}, auto)`
     squearesContainer.style.gridTemplateColumns = `repeat(${cols}, auto)`
     squearesContainer.innerHTML = ''
@@ -48,6 +50,7 @@ function generateSquares() {
     //let rowCol = rows === 1 && cols === 1 ? rows * cols : rows + cols - 1
     let rowCol = rows * cols
 
+    // Creating squares
     for (let i = 0; i < rowCol; i++) {
         const square = document.createElement('div')
         square.classList.add('dashboard_square')
@@ -55,9 +58,11 @@ function generateSquares() {
     }
 }
 
+// Set listenners
 rowInput.addEventListener('input', generateSquares)
 columnInput.addEventListener('input', generateSquares)
 
+// Initial square
 generateSquares()
 
 

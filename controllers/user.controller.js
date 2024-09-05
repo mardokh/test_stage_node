@@ -21,7 +21,7 @@ exports.registerUser = async (req, res) => {
 
     // Check if user exist
     if (user) {
-      return res.status(409).json({message: "This user already exist"})
+      return res.status(409).json({message: "This user already exist", type: "Failed"})
     }
 
     // Hash password
@@ -134,7 +134,8 @@ exports.logoutUser = async (req, res) => {
       httpOnly: true,
       path: '/'
     })
-    res.redirect('/')
+    //res.redirect('/')
+    return res.json({message: "Cookie successfully redefined", type: "Success"})
   }
   catch (err) {
     console.log(err)

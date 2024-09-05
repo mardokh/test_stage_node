@@ -181,7 +181,6 @@ window.onload = async () => {
         })
 
         // Respons hadling
-        console.log(response)
         if (response.status === 200) {
             window.location.href = "http://localhost:3000/dashboard"
         }
