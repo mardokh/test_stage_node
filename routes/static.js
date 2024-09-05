@@ -6,12 +6,12 @@ const path = require('path')
 const static = express.Router()
 
 // Main page
-router.get('/', (req, res) => {
+static.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/static', 'index.html'))
 })
 
 // Dashboard page 
-router.get('/dashboard', (req, res) => {
+static.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/static', 'dashboard.html'))
 })
 

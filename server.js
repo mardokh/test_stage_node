@@ -18,7 +18,7 @@ app.use(cookieParser())
 app.use(express.json())
 
 // Static file handler
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Routing end-point
 app.use('', static)

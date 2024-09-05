@@ -51,28 +51,6 @@ body {
     cursor: pointer;
 }
 
-/*
-#registration_invalid_email, #registration_invalid_password, #registration_form_error {
-    font-size: 13px;
-    color: red;
-    position: absolute;
-}
-
-
-#registration_invalid_email {
-    top: 260px;
-}
-
-#registration_invalid_password {
-    top: 335px;
-}
-
-#registration_form_error {
-    top: 440px;
-    font-size: 14px;
-}
-*/
-
 .hidden {
     display: none;
 }
@@ -85,12 +63,12 @@ body {
 
 /* DASHBOARD PAGE */ 
 
-.dashboard_user_info_section {
+.dashboard_section {
     width: 100%;
     margin-bottom: 50px;
 }
 
-.dashboard_user_sub_container {
+.dashboard_sub_container {
     width: 60%;
     margin: 50px auto;
     display: flex;
@@ -101,45 +79,45 @@ body {
     background-color: rgb(251, 251, 251);
 }
 
-.dashboard_user_title {
+.dashboard_title {
     text-align: center;
 }
 
-.dashboard_user_info_container {
+.dashboard_user_info {
     width: 30%;
     height: 200px;
     padding: 20px;
     color: rgb(86, 86, 86);
 }
 
-.dashboard_user_info_item {
+.dashboard_info_item {
     display: flex;
     justify-content: space-between;
 }
 
-.dashboard_logout_container {
+.dashboard_logout {
     width: 100%;
     margin: 20px auto;
     display: flex;
     justify-content: center;
 }
 
-#dashboard_logout_btn {
+#dashboard_btn {
     width: 100%;
     height: 30px;
     cursor: pointer;
 }
 
-.dashboard_squares_generator_section {
+.dashboard_squares_section {
     display: flex;
     justify-content: center;
 }
 
-.dashboard_squares_sub_container {
+.dashboard_squares_container {
     width: 60%;
 }
 
-.dashboard_squares_inputs_container {
+.dashboard_squares_inputs {
     display: flex;
     justify-content: space-evenly;
     background-color: rgba(32, 178, 171, 0.463);
@@ -147,12 +125,12 @@ body {
     padding: 15px;
 }
 
-.dashboard_squares_inputs_container input {
+.dashboard_squares_inputs input {
     height: 25px;
     padding: 10px;
 }
 
-.dashboard_squares_input_container {
+.dashboard_squares_input {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -160,7 +138,7 @@ body {
     height: 75px;
 }
 
-.dashboard_squares_container {
+.dashboard_squares_displayer {
     display: grid;
     gap: 5px;
     width: 100%;
@@ -174,11 +152,11 @@ body {
     border: 1px solid #000;
 }
 
-.dashboard_profil_pic_container {
+.dashboard_profil_pic {
     width: 200px;
     height: 200px;
     border: 1px solid gainsboro;
-    background-image: url("./profil.png");
+    background-image: url("../images/profil.png");
     background-repeat: no-repeat;
     background-size: cover;
 }

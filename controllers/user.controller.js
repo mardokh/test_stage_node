@@ -38,7 +38,8 @@ exports.registerUser = async (req, res) => {
   }
   // Catching errors 
   catch (error) {
-    return res.status(500).json({ message: 'Database error !', type: "Failed" })
+    console.log(err)
+    return res.status(500).json({ message: 'Server error !', type: "Failed" })
   }
 }
 
@@ -87,7 +88,8 @@ exports.loginUser = async (req, res) => {
   } 
   // Catching errors 
   catch (error) {
-    return res.status(500).json({ message: 'Database error !', type: "Failed"})
+    console.log(err)
+    return res.status(500).json({ message: 'Server error !', type: "Failed"})
   }
 }
 
@@ -117,7 +119,25 @@ exports.getUser = async (req, res) => {
   }
   // Catching errors
   catch (error) {
-    return res.status(500).json({ message: 'Database error !', type: "Failed"})
+    console.log(err)
+    return res.status(500).json({ message: 'Server error !', type: "Failed"})
   }
 
+}
+
+// Logout user
+exports.logoutUser = async (req, res) => {
+
+  try {
+    res.cookie('token', '', { 
+      expires: new Date(0),
+      httpOnly: true,
+      path: '/'
+    })
+    res.redirect('/')
+  }
+  catch (err) {
+    console.log(err)
+    return res.status(500).json({ message: 'Server error !', type: "Failed"})
+  }
 }

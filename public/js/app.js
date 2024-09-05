@@ -160,14 +160,3 @@ toggleBtn.addEventListener("click", () => {
     }
     
 })
-
-
-// * LOGGED IN REDIRECTION * //
-/*
-window.onload = async () => {
-
-    if (localStorage.getItem("admin_token")) {
-        window.location.href = "http://localhost:3000/dashboard"
-    }   
-}
-*/

@@ -4,48 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./styles.css">
-    <script src="./dashboard.js" async></script>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="../js/dashboard.js" async></script>
 </head>
 <body>
 
-    <section class="dashboard_user_info_section">
-        <h1 class="dashboard_user_title">Welcom to the Dashboard</h1>
-        <div class="dashboard_user_sub_container">
-            <div class="dashboard_profil_pic_container"></div>
-            <div class="dashboard_user_info_container">
-                <div class="dashboard_user_info_item">
+    <section class="dashboard_section">
+        <h1 class="dashboard_title">Welcom to the Dashboard</h1>
+        <div class="dashboard_sub_container">
+            <div class="dashboard_profil_pic"></div>
+            <div class="dashboard_user_info">
+                <div class="dashboard_info_item">
                     <p>First Name :</p>
-                    <p id="dashboard_user_firstName"></p>
+                    <p id="firstName"></p>
                 </div>
-                <div class="dashboard_user_info_item">
+                <div class="dashboard_info_item">
                     <p>Last Name :</p>
-                    <p id="dashboard_user_lastName"></p>
+                    <p id="lastName"></p>
                 </div>
-                <div class="dashboard_user_info_item">
+                <div class="dashboard_info_item">
                     <p>Email :</p>
-                    <p id="dashboard_user_email"></p>
+                    <p id="email"></p>
                 </div>
-                <div class="dashboard_logout_container">
-                    <button id="dashboard_logout_btn">logout</button>
+                <div class="dashboard_logout">
+                    <button id="dashboard_btn">logout</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="dashboard_squares_generator_section">
-        <div class="dashboard_squares_sub_container">
-            <div class="dashboard_squares_inputs_container">
-                <div class="dashboard_squares_input_container">
+    <section class="dashboard_squares_section">
+        <div class="dashboard_squares_container">
+            <div class="dashboard_squares_inputs">
+                <div class="dashboard_squares_input">
                     <label for="rowInput">Square number:</label>
                     <input type="number" id="rowInput" value="1" min="1">
                 </div>
-                <div class="dashboard_squares_input_container">
+                <div class="dashboard_squares_input">
                     <label for="columnInput">Columns number:</label>
                     <input type="number" id="columnInput" value="1" min="1">
                 </div>
             </div>
-            <div id="dashboard_squares_container_id" class="dashboard_squares_container"></div>
+            <div id="dashboard_squares_displayer" class="dashboard_squares_displayer"></div>
         </div>
     </section>
 

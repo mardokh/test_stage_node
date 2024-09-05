@@ -6,13 +6,16 @@ const middleware = require('../middleware/jwt.auth.js')
 // Initialize express router
 const endPoint = express.Router()
 
-router.get('/api/user', middleware.checkToken, controller.getUser)
+endPoint.get('/user', middleware.checkToken, controller.getUser)
 
 // Create a new user
-router.post('/api/register', controller.registerUser)
+endPoint.post('/register', controller.registerUser)
 
 // Login user
-router.post('/api/login', controller.loginUser)
+endPoint.post('/login', controller.loginUser)
+
+// Logout user
+endPoint.get('/logout', controller.logoutUser)
 
 
 module.exports = endPoint
