@@ -6,12 +6,22 @@ const path = require("path")
 const db = require('./config/db')
 
 
+// Initialize express
+const app = express()
+
 // Import routes
 const static = require('./routes/static.router')
 const endPoint = require('./routes/endPoint.router')
 
-// Initialize express
-const app = express()
+// Middleware to prevent caching
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.setHeader('Surrogate-Control', 'no-store');
+    next();
+  });
+
 
 // Cookie handler
 app.use(cookieParser())

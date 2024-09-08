@@ -14,6 +14,7 @@ exports.checkToken = async (req, res, next) => {
     // Check token validity
     try {
         const decoded = await jwt.verify(token, 'chakibenaissa')
+        // check user in database
         req.user = decoded
     }
     // Catching errors 

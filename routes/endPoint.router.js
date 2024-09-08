@@ -12,7 +12,7 @@ endPoint.get('/user', middleware.checkToken, controller.getUser)
 endPoint.post('/register', controller.registerUser)
 
 // Login user
-endPoint.post('/login', controller.loginUser)
+endPoint.post('/login', controller.loginUser) // middelxare login
 
 // Logout user
 endPoint.get('/logout', controller.logoutUser)
