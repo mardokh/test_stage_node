@@ -15,13 +15,10 @@ const endPoint = require('./routes/endPoint.router')
 
 // Middleware to prevent caching
 app.use((req, res, next) => {
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    res.setHeader('Surrogate-Control', 'no-store');
-    next();
-  });
-
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
+    res.setHeader('Expires', '0')
+    next()
+})
 
 // Cookie handler
 app.use(cookieParser())
