@@ -1,5 +1,5 @@
 
-// * CONST * //
+// * CONSTS * //
 const FirstName = document.getElementById("firstName")
 const LastName = document.getElementById("lastName")
 const Email = document.getElementById("email")
@@ -9,6 +9,7 @@ const invalidForm = document.getElementById("invalid_form")
 const invalidEmail = document.getElementById("invalid_email")
 const invalidPassword = document.getElementById("invalid_password")
 const formSubContainer = document.querySelector(".form_sub_container")
+const form = document.getElementById("form")
 
 
 // * REUSABLE FUNCTIONS * //
@@ -25,7 +26,7 @@ function validatePassword(password) {
 
 
 // * FROM HANDLER * //
-document.getElementById("form").addEventListener('submit', async (e) => {
+form.addEventListener('submit', async (e) => {
 
     // Prevent default submit
     e.preventDefault()

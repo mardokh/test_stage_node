@@ -177,3 +177,23 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.dashboard_loader {
+    text-align: center;
+}
+
+/* Loader styles */
+.loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #333;
+    z-index: 1000; /* Ensure the loader is above other content */
+}

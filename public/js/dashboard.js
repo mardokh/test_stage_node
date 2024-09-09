@@ -1,42 +1,54 @@
 
+// * CONSTS * //
+const loader = document.getElementById('loader')
+const firstName = document.getElementById("firstName")
+const lastName = document.getElementById("lastName")
+const email = document.getElementById("email")
+const rowInput = document.getElementById('rowInput')
+const columnInput = document.getElementById('columnInput')
+const squearesContainer = document.getElementById('dashboard_squares_displayer')
+const square = document.createElement('div')
+const dashboard_btn =  document.getElementById("dashboard_btn")
+
+
 // * GET USER INFO * //
 window.onload = async () => {
+
+    // Unable loader
+    loader.style.display = 'flex'
 
     try {
         const response = await fetch("http://localhost:3000/api/user", {
             method: "GET"
-        })
-    
-        // Extrad json response
+        });
+
+        // Extract JSON response
         const jsonResponse = await response.json()
-    
-        // Respons hadling
+
+        // Handle response
         switch(response.status) {
             case 200:
-                document.getElementById("firstName").innerHTML = jsonResponse.data.firstName
-                document.getElementById("lastName").innerHTML = jsonResponse.data.lastName
-                document.getElementById("email").innerHTML = jsonResponse.data.email
-              break
+                firstName.innerHTML = jsonResponse.data.firstName
+                lastName.getElementById("lastName").innerHTML = jsonResponse.data.lastName
+                email.getElementById("email").innerHTML = jsonResponse.data.email
+                break;
             case 400:
-            case 401:    
-            case 403:    
+            case 401:
+            case 403:
             case 404:
                 window.location.href = "http://localhost:3000"
-              break
+                break;
         }
-    }
-    catch (err) {
+    } catch (err) {
         console.error('Error : ', err)
+    } finally {
+        // Disable loader
+        loader.style.display = 'none'
     }
-    
 }
 
 
 // * SQUARE PAVING * //
-const rowInput = document.getElementById('rowInput')
-const columnInput = document.getElementById('columnInput')
-const squearesContainer = document.getElementById('dashboard_squares_displayer')
-
 // Squares generator
 function generateSquares() {
     const rows = parseInt(rowInput.value)
@@ -45,20 +57,18 @@ function generateSquares() {
     // Define rows and cols
     squearesContainer.style.gridTemplateRows = `repeat(${rows}, auto)`
     squearesContainer.style.gridTemplateColumns = `repeat(${cols}, auto)`
-    squearesContainer.innerHTML = ''
+    squearesContainer.innerHTML = '';
 
-    //let rowCol = rows === 1 && cols === 1 ? rows * cols : rows + cols - 1
-    let rowCol = rows * cols
+    let rowCol = rows * cols;
 
     // Creating squares
     for (let i = 0; i < rowCol; i++) {
-        const square = document.createElement('div')
         square.classList.add('dashboard_square')
         squearesContainer.appendChild(square)
     }
 }
 
-// Set listenners
+// Set listeners
 rowInput.addEventListener('input', generateSquares)
 columnInput.addEventListener('input', generateSquares)
 
@@ -66,22 +76,20 @@ columnInput.addEventListener('input', generateSquares)
 generateSquares()
 
 
-// * LOGOUT USER  * //
-document.getElementById("dashboard_btn").addEventListener('click', async () => {
-
+// * LOGOUT USER * //
+dashboard_btn.addEventListener('click', async () => {
     try {
         const response = await fetch("http://localhost:3000/api/logout", {
             method: "GET"
-        })
+        });
 
         if (!response.ok) {
-            console.error('Failed to logout')
+            console.error('Failed to logout');
         }
 
-        window.location.href = 'http://localhost:3000'
+        window.location.href = 'http://localhost:3000';
 
-    } 
-    catch (err) {
-        console.error('Error : ', err)
+    } catch (err) {
+        console.error('Error : ', err);
     }
-})
+});
