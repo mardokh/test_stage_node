@@ -1,5 +1,5 @@
 
-// * CONSTS * //
+// * CONST * //
 const FirstName = document.getElementById("firstName")
 const LastName = document.getElementById("lastName")
 const Email = document.getElementById("email")
@@ -62,11 +62,13 @@ form.addEventListener('submit', async (e) => {
                 break
                 case 401:
                 case 400:
+                 invalidForm.classList.remove("hidden")
                  invalidForm.innerHTML = jsonResponse.message
                 break
             }
         }
         catch (err) {
+         invalidForm.classList.remove("hidden")
          invalidForm.innerHTML = "An server side error occurred during the registration process"
         }
     }
