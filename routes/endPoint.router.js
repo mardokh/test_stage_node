@@ -1,24 +1,26 @@
 // import modules
 const express = require('express')
-const controller = require('../controllers/user.controller.js')
+const authController = require('../controllers/authController.js')
+const sessionController = require('../controllers/sessionController.js')
+const userController = require('../controllers/userController.js')
 const middleware = require('../middleware/jwt.auth.js')
 
 // Initialize express router
 const endPoint = express.Router()
 
-endPoint.get('/user', middleware.checkToken, controller.getUser)
+endPoint.get('/user', middleware.checkToken, userController.getUser)
 
 // Create a new user
-endPoint.post('/register', controller.registerUser)
+endPoint.post('/register', authController.registerUser)
 
 // Login user
-endPoint.post('/login', controller.loginUser) // middelxare login
+endPoint.post('/login', authController.loginUser) // middelxare login
 
 // Logout user
-endPoint.get('/logout', controller.logoutUser)
+endPoint.get('/logout', userController.logoutUser)
 
 // Check user session
-endPoint.get('/session', middleware.checkToken, controller.checkSession)
+endPoint.get('/session', middleware.checkToken, sessionController.checkSession)
 
 
 module.exports = endPoint
