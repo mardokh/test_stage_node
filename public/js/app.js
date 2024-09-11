@@ -14,12 +14,12 @@ const form = document.getElementById("form")
 
 // * REUSABLE FUNCTIONS * //
 // email validation
-function validateEmail(email) {
+const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return regex.test(email)
 }
 // password validation
-function validatePassword(password) {
+const validatePassword = (password) => {
     const regex = /^(?=.*[A-Z])(?=.*\d.*\d).+$/
     return regex.test(password)
 }
@@ -34,7 +34,7 @@ form.addEventListener('submit', async (e) => {
     // **  SING-IN  ** //
 
     // Check form fields
-    if (!FirstName.value && !LastName.value) {
+    if (FirstName.classList.contains("hidden") && LastName.classList.contains("hidden")) {
 
         // Catching input values
         const data = {
@@ -58,17 +58,18 @@ form.addEventListener('submit', async (e) => {
             // Respons hadling
             switch(response.status) {
                 case 200:
-                    window.location.href = "http://localhost:3000/dashboard"
+                    window.location.replace("http://localhost:3000/dashboard")
                 break
                 case 401:
                 case 400:
+                case 500:
                  invalidForm.classList.remove("hidden")
-                 invalidForm.innerHTML = jsonResponse.message
+                 invalidForm.innerHTML = jsonResponse.message  // server side catch error handling
                 break
             }
         }
         catch (err) {
-         invalidForm.classList.remove("hidden")
+         invalidForm.classList.remove("hidden")    // server catch side error handling
          invalidForm.innerHTML = "An server side error occurred during the registration process"
         }
     }
@@ -102,7 +103,6 @@ form.addEventListener('submit', async (e) => {
             Email.style.border = "2px solid red"
             stopCode = true
         }
-
         // Validate password
         if (!validatePassword(data.password)) {
             invalidPassword.classList.remove("hidden")
@@ -135,12 +135,23 @@ form.addEventListener('submit', async (e) => {
             switch (response.status) {
                 case 201:
                     window.location.href = "http://localhost:3000"
-                break;
+                    break
                 case 400:    
                 case 409:
                     invalidForm.classList.remove("hidden")
                     invalidForm.innerHTML = jsonResponse.message
-                break;
+                    break
+                case 422:
+                    jsonResponse.forEach((error) => {
+                        if (error.data === "invalidEmail") {
+                            invalidEmail.classList.remove("hidden")
+                            invalidEmail.innerHTML = error.message
+                        } else if (error.data === "invalidPassword") {
+                            invalidPassword.classList.remove("hidden")
+                            invalidPassword.innerHTML = error.message
+                        }
+                    })
+                    break
             }
         } 
         catch (err) {
@@ -153,6 +164,7 @@ form.addEventListener('submit', async (e) => {
 // * FORM TOGGLE HANDLER * //
 toggleBtn.addEventListener("click", () => {
 
+    // Switch according to text content
     switch (toggleBtn.textContent) {
         case "sing-up":
             FirstName.classList.remove("hidden")
@@ -160,6 +172,9 @@ toggleBtn.addEventListener("click", () => {
             toggleBtn.textContent = "sing-in"
             formSubContainer.classList.remove("singIn")
             formSubContainer.classList.add("singUP")
+            invalidForm.innerHTML = ""
+            invalidEmail.innerHTML = ""
+            invalidPassword.innerHTML = ""
             break;
         case "sing-in":
             FirstName.classList.add("hidden")
@@ -167,6 +182,9 @@ toggleBtn.addEventListener("click", () => {
             toggleBtn.textContent = "sing-up"
             formSubContainer.classList.remove("singUP")
             formSubContainer.classList.add("singIn")
+            invalidForm.innerHTML = ""
+            invalidEmail.innerHTML = ""
+            invalidPassword.innerHTML = ""
             break;
         default:
             break;
@@ -179,12 +197,14 @@ toggleBtn.addEventListener("click", () => {
 window.onload = async () => {
 
     try {
+        // Send request for check session
         const response = await fetch("http://localhost:3000/api/session", {
             method: "GET"
         })
 
         // Respons hadling
         if (response.status === 200) {
+            // if valide session redirect to dashboard
             window.location.href = "http://localhost:3000/dashboard"
         }
     }

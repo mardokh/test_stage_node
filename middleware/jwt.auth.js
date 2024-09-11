@@ -8,7 +8,7 @@ exports.checkToken = async (req, res, next) => {
 
     // Check if token exist
     if (!token) {
-        return res.status(403).json({ message: 'Token not found', type: "Forbidden" })
+        return res.status(403).json({ message: 'Token not found', data: [], type: "Forbidden" })
     }
 
     // Check token validity
@@ -19,7 +19,7 @@ exports.checkToken = async (req, res, next) => {
     }
     // Catching errors 
     catch (err) {
-        return res.status(401).json({ message: 'Bad token', type: "UnAuthorized" })
+        return res.status(401).json({ message: 'Bad token', data: [], type: "UnAuthorized" })
     }
 
     // Next actions

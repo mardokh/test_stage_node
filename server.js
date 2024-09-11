@@ -10,15 +10,8 @@ const db = require('./config/db')
 const app = express()
 
 // Import routes
-const static = require('./routes/static.router')
-const endPoint = require('./routes/endPoint.router')
-
-// Middleware to prevent caching
-app.use((req, res, next) => {
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
-    res.setHeader('Expires', '0')
-    next()
-})
+const staticRouter = require('./routes/static.router')
+const crudRouter = require('./routes/crud.router')
 
 // Cookie handler
 app.use(cookieParser())
@@ -27,12 +20,11 @@ app.use(cookieParser())
 app.use(express.json())
 
 // Static file handler
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Routing end-point
-app.use('', static)
-app.use('/api', endPoint)
-
+app.use('', staticRouter)
+app.use('/api', crudRouter)
 
 // Start server
 app.listen(3000, () => {
