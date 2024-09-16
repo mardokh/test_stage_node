@@ -1,13 +1,16 @@
 // Import modules
 const Users = require('../models/users')
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 
 // Create user
 exports.createUser = async (req, res) => {
 
     // Extract inputs
-    const { firstName, lastName, email} = req.body
+    const { firstName, lastName, email, password} = req.body
+
+    console.log(req.body)
 
     try {
         // Search user in database
@@ -18,8 +21,11 @@ exports.createUser = async (req, res) => {
             return res.status(409).json({message: "This user already exist", data: user, type: "Failed"})
         }
 
+        // Hash password
+        const hashedPassword = await bcrypt.hash(password, 10)
+
         // Create user
-        const newUser = new Users({ firstName, lastName, email })
+        const newUser = new Users({ firstName, lastName, email, password: hashedPassword })
 
         // Save user
         await newUser.save()

@@ -2,27 +2,41 @@
 const mongoose = require('mongoose')
 
 
-// Create timestampe date
-const date = new Date()
-const formattedDate = date.toISOString().split('T')[0]
-
 // Schema
 const usersSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
+    required: true,
     unique: true
+  },
+  password: {
+    type: String,
+    required: true
   },
   timestamp: {
     type: String,
-    default: formattedDate
+    required: true,
+    default: Date.now
   },
   status: {
     type: String,
+    required: true,
     default: 'unable'
+  },
+  type: { 
+    type: String, 
+    enum: ['admin', 'user'], 
+    default: 'user' 
   }
-})
+}, { collection: 'Users' })
 
 // Model
 const Users = mongoose.model('Users', usersSchema)

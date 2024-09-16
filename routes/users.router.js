@@ -9,13 +9,13 @@ const usersRouter = express.Router()
 
 
 // Create user
-usersRouter.post('/create/user', usersMiddleware.checkUsers, usersController.createUser)
+usersRouter.post('/create/user', usersController.createUser)
 
 // Get users
 usersRouter.get('/getting/users', usersController.getUsers)
 
 // Update user
-usersRouter.put('/update/user/:id?', usersMiddleware.checkUsers, usersController.updateUser)
+usersRouter.put('/update/user/:id?', usersController.updateUser)
 
 // Delete user
 usersRouter.delete('/delete/user/:id?', usersController.deleteUser)
