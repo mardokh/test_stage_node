@@ -32,31 +32,23 @@ closeBtn.addEventListener('click', () => {
 })
 
 
-const tbody = document.getElementById('tableBody');
+const tbody = document.getElementById('tableBody')
 
-
-// Fetch users from the backend and dynamically create rows
-const fetchAndDisplayUsers = async () => {
+const getUsers = async () => {
     try {
         const response = await fetch("http://localhost:3000/api/getting/users", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
             }
-        });
+        })
 
-        // Extract JSON response
-        const users = await response.json();
+        const jsonResponse = await response.json();
 
-        // Check if response is OK and users data is present
-        if (response.status === 200 && users.data.length > 0) {
-            
-            // Clear existing rows
-            tbody.innerHTML = "";
+        if (response.status === 200 && jsonResponse.data.length > 0) {
 
-            // Loop through users and create table rows
-            users.data.forEach(user => {
-                const row = document.createElement('tr');
+            jsonResponse.data.forEach(user => {
+                const row = document.createElement('tr')
                 row.innerHTML = `
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
@@ -74,20 +66,21 @@ const fetchAndDisplayUsers = async () => {
                             </label>
                         </div>
                     </td>
-                `;
-                tbody.appendChild(row);
-            });
+                `
+                tbody.appendChild(row)
+            })
 
-        } else {
-            console.log('No users found or failed to fetch users');
+        }
+        else if (response.status === 404) {
+            console.log(jsonResponse)
         }
 
-    } catch (error) {
-        console.log('Error fetching users: ', error);
+    } catch (err) {
+        console.log(err)
     }
-};
+}
 
-fetchAndDisplayUsers()
+getUsers()
 
 
 // Submit form hanlder 
