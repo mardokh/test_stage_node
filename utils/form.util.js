@@ -15,3 +15,8 @@ exports.validatePassword = (password) => {
     const regex = /^(?=.*[A-Z])(?=.*\d.*\d).+$/
     return regex.test(password)
 }
+
+// Check id
+exports.checkId = (id) => {
+    return parseInt(id)
+}

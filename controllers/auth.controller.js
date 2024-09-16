@@ -1,4 +1,4 @@
-// Export modules
+// Import modules
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
@@ -105,7 +105,7 @@ exports.logoutUser = async (req, res) => {
 exports.checkSession = async (req, res) => {
 
   try {
-    // Check if user returner
+    // Check if user returned
     if (!req.user) {
       return res.status(401).json({message: "Disconnected status", data: [], type: "UnAuthorized"})
     }

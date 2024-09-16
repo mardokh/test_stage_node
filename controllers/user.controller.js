@@ -1,19 +1,18 @@
-// Export modules
+// Import modules
 const User = require('../models/user')
 
 
 // Get user
 exports.getUser = async (req, res) => {
 
+    // Extract id 
+    if (!req.user || !req.user.id) {
+      return res.status(400).json({message: 'Missing user id !', data: [], type: "Failed"})
+    }
+
+    const id = req.user.id
+
     try {
-      // Extract id 
-      const id = req.user.id
-  
-      // Check if id exist
-      if (!id) {
-        return res.status(400).json({message: 'Missing user id !', data: [], type: "Failed"})
-      }
-  
       // Get user
       const user = await User.findById(id)
   
@@ -25,7 +24,7 @@ exports.getUser = async (req, res) => {
       // Success response
       return res.json({message: "User getting successfully", data: user, type: "Success"})
     }
-    catch (error) {
+    catch (err) {
       console.log(err)
       return res.status(500).json({ message: 'Server error !', data: [], type: "Failed"})
     }

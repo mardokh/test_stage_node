@@ -1,5 +1,7 @@
 body {
-    background-color:antiquewhite;
+    margin-left: 100px;
+    margin-right: 100px;
+    box-sizing: border-box;
 }
 
 /* FORM LOGIN/REGISTER */ 
@@ -66,10 +68,6 @@ body {
 .singUp_btn {
     color: blue;
     cursor: pointer;
-}
-
-.hidden {
-    display: none;
 }
 
 #toggle_btn {
@@ -196,4 +194,332 @@ body {
     font-size: 2rem;
     color: #333;
     z-index: 1000; /* Ensure the loader is above other content */
+}
+
+
+/* USERS PAGE */
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-bottom: 150px;
+}
+
+.header_logo_nav {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_logo {
+    width: 100px;
+    height: 60px;
+}
+
+nav {
+    width: 150px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+.header_title h1 {
+    font-family: "Faster One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.header_title h1 span {
+    color: #80BD01;
+}
+
+.header_setting {
+    width: 230px;
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gainsboro;
+}
+
+/* INPUTS SECTION */
+.user_inputs_section {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px ;
+}
+
+.user_inputs_section h1 {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.div_user {
+    width: 80%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user_add_search input {
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.user_search {
+    position: relative;
+    width: 700px;
+}
+
+.bi-search {
+    position: absolute;
+    right: 35px;
+    top: 9px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.user_add_search input[type="text"] {
+    width: 95%;
+    padding-left: 10px;
+    font-size: 1rem;
+
+}
+
+.user_add_search button {
+    width: 500px;
+    height: 40px;
+    border: 1px solid black;
+    background-color: #80bd01;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.user_add_search button:hover {
+    background-color: #77a318;
+}
+
+/* USERS TABLE SECTION */
+
+.user_table_section {
+    background-color: ghostwhite;
+    margin-bottom: 150px;
+}
+
+.user_table_section table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    margin: 0px auto;
+}
+
+.user_table_section table thead {
+    margin: 0 auto;
+}
+
+.user_table_section table thead tr {
+    background-color: gainsboro;
+    text-align: left;
+    height: 50px;
+}
+
+.user_table_section table thead tr th {
+    padding-left: 90px;
+}
+
+.user_table_section table tbody tr td {
+    padding-left: 90px;
+    background-color: white;
+    height: 50px;
+}
+
+.user_table_actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.user_table_actions div {
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.bi-pencil-square {
+    color: #80BD01;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.bi-trash {
+    color: rgb(203, 60, 60);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Switch button unable disable user */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 22px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+/* USERS FORM SECTION */
+
+.user_form_section {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333333a6;
+    z-index: 10;
+}
+
+.user_form_section form {
+    position: relative;
+    width: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+    padding: 30px;
+    padding-top: 40px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.user_form_section form div {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.user_form_section form div input {
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(152, 145, 145);
+}
+
+.user_form_section form div input[type="submit"] {
+    color: white;
+    font-weight: bold;
+    background-color:#333;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.user_form_section form div input[type="submit"]:hover {
+    background-color: rgb(25, 25, 25);
+}
+
+.bi-x-circle-fill {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.bi-x-circle-fill:hover {
+    color: #333;
+}
+
+
+
+/* HIDDE ELEMENTS */
+.hidden {
+    display: none;
 }

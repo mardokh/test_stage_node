@@ -16,6 +16,11 @@ staticRouter.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/static', 'dashboard.html'))
 })
 
+// Users page 
+staticRouter.get('/users', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/static', 'users.html'))
+})
+
 
 // Export modules
 module.exports = staticRouter;

@@ -86,7 +86,7 @@ dashboard_btn.addEventListener('click', async () => {
         });
 
         if (!response.ok) {
-            console.error('Failed to logout');
+            console.error('Failed to logout')
         }
 
         // if logout successfully redirect to login page

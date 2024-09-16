@@ -10,8 +10,10 @@ const db = require('./config/db')
 const app = express()
 
 // Import routes
-const staticRouter = require('./routes/static.router')
-const crudRouter = require('./routes/crud.router')
+const authRouter = require('./routes/auth.router')
+const userRouter = require('./routes/user.router')
+const staticRouter = require("./routes/static.router")
+const usersRouter = require('./routes/users.router')
 
 // Cookie handler
 app.use(cookieParser())
@@ -24,7 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // Routing end-point
 app.use('', staticRouter)
-app.use('/api', crudRouter)
+app.use('/api', authRouter, userRouter, usersRouter)
+
 
 // Start server
 app.listen(3000, () => {

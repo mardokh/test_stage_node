@@ -11,7 +11,7 @@ const invalidPassword = document.getElementById("invalid_password")
 const formSubContainer = document.querySelector(".form_sub_container")
 const form = document.getElementById("form")
 
-
+/*
 // * REUSABLE FUNCTIONS * //
 // email validation
 const validateEmail = (email) => {
@@ -23,7 +23,7 @@ const validatePassword = (password) => {
     const regex = /^(?=.*[A-Z])(?=.*\d.*\d).+$/
     return regex.test(password)
 }
-
+*/
 
 // * FROM HANDLER * //
 form.addEventListener('submit', async (e) => {
@@ -85,6 +85,8 @@ form.addEventListener('submit', async (e) => {
             password: Password.value
         }
 
+        /*
+
         // Stope code variable
         let stopCode = false
 
@@ -117,6 +119,7 @@ form.addEventListener('submit', async (e) => {
             invalidForm.innerHTML = "All form fields are required"
             return
         }
+        */
         
         try {
             // Send credentials to the server

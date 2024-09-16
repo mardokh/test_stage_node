@@ -1,4 +1,4 @@
-const { emptyField } = require('../utils/form.checker')
+const { emptyField } = require('../utils/form.util')
 
 
 exports.checkLogin = async (req, res, next) => {
@@ -11,6 +11,8 @@ exports.checkLogin = async (req, res, next) => {
         if (!emptyField([email, password])) {
             return res.status(400).json({message: 'Plase complete all fields of the form', data: [], type: "Failed"})
         }
+
+        // controller l'email 
     }
     catch (err) {
         console.log(err)
