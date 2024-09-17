@@ -1,51 +1,32 @@
 
 // ** CONSTS ** //
+
 const addUser = document.getElementById('addUser')
-const updateUser = document.getElementById('updateUser')
 const usersForm = document.querySelector('.user_form_section')
 const closeBtn = document.querySelector('.bi-x-circle-fill')
+const deleteBtn = document.querySelector('.bi-trash')
 const submitBtn = document.getElementById('submitBtn')
 const firstName = document.getElementById('firstName')
 const lastName = document.getElementById('lastName')
 const email = document.getElementById('email')
 const password = document.getElementById('password')
-
-
-// **  USER ADD/UPDATE HANDLER  ** //
-
-// Display form handler
-addUser.addEventListener('click', (e) => {
-    usersForm.classList.remove('hidden')
-    submitBtn.value = "ADD"
-})
-
-if (updateUser) {
-    updateUser.addEventListener('click', (e) => {
-        usersForm.classList.remove('hidden')
-        submitBtn.value = "UPDATE"
-    })
-}
-
-// Close form
-closeBtn.addEventListener('click', () => {
-    usersForm.classList.add('hidden')
-})
-
-
 const tbody = document.getElementById('tableBody')
+let userId = ""
 
+/* *************************************************************************************************************************** */
+
+// ** GET USERS LIST HANDLER ** //
 const getUsers = async () => {
     try {
         const response = await fetch("http://localhost:3000/api/getting/users", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
+            method: "GET"
         })
 
         const jsonResponse = await response.json();
 
         if (response.status === 200 && jsonResponse.data.length > 0) {
+
+            tbody.innerHTML = ""
 
             jsonResponse.data.forEach(user => {
                 const row = document.createElement('tr')
@@ -57,8 +38,8 @@ const getUsers = async () => {
                     <td>
                         <div class="user_table_actions">
                             <div>
-                                <i class="bi bi-pencil-square" id="updateUser"></i>
-                                <i class="bi bi-trash"></i>
+                                <i class="bi bi-pencil-square" id="${user._id}"></i>
+                                <i class="bi bi-trash" id="${user._id}"></i>
                             </div>
                             <label class="switch">
                                 <input type="checkbox" ${user.status === "unable" ? "checked" : ""}>
@@ -69,7 +50,6 @@ const getUsers = async () => {
                 `
                 tbody.appendChild(row)
             })
-
         }
         else if (response.status === 404) {
             console.log(jsonResponse)
@@ -79,11 +59,11 @@ const getUsers = async () => {
         console.log(err)
     }
 }
-
 getUsers()
 
+/* *************************************************************************************************************************** */
 
-// Submit form hanlder 
+// ** USER ADD/UPDATE SUBMIT FORM HANDLER ** //
 usersForm.addEventListener('submit', async (e) => {
 
     // Prevent default submit
@@ -112,14 +92,15 @@ usersForm.addEventListener('submit', async (e) => {
             
             // Respons hadling
             if (response.status === 201) {
-                console.log('ADD SUCCESS : ', jsonResponse)
+                // Update users table list
+                getUsers()
             }
             else if (response.status === 409 || response.status === 500) {
                 console.log('ADD FAILED : ', jsonResponse)
             }
         }
         else if (submitBtn.value === "UPDATE") {
-            const response = await fetch("http://localhost:3000/api/update/user/66e83c4d74786eff0edb73d0", {
+            const response = await fetch(`http://localhost:3000/api/update/user/${userId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -141,5 +122,80 @@ usersForm.addEventListener('submit', async (e) => {
     }
     catch (err) {
         console.log(err)
+    }
+})
+
+/* *************************************************************************************************************************** */
+
+// **  USER ADD/UPDATE DISPLAY FORM HANDLER  ** //
+// Display form handler
+addUser.addEventListener('click', (e) => {
+    usersForm.classList.remove('hidden')
+    submitBtn.value = "ADD"
+})
+
+// Add an event listener to the tbody element
+tbody.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('bi-pencil-square')) {
+        usersForm.classList.remove('hidden')
+        password.classList.add('hidden')
+        submitBtn.value = "UPDATE"
+        userId = e.target.id
+
+        try {
+            const response = await fetch(`http://localhost:3000/api/getting/user/${userId}`, {
+                method: "GET"
+            })
+    
+            const jsonResponse = await response.json()
+    
+            // Respons hadling
+            if (response.status === 200) {
+        
+                firstName.value = jsonResponse.data.firstName
+                lastName.value = jsonResponse.data.lastName
+                email.value = jsonResponse.data.email
+            }
+            else if (response.status === 400 || response.status === 404 || response.status === 500) {
+                console.log('GET USER FAILED : ', jsonResponse)
+            } 
+        }
+        catch (err) {
+            console.log(err)
+        }       
+    }
+})
+
+// Close form
+closeBtn.addEventListener('click', () => {
+    usersForm.classList.add('hidden')
+})
+
+/* *************************************************************************************************************************** */
+
+// **  USER DELETE HANLDER  ** //
+
+tbody.addEventListener('click', async (e) => {
+
+    if (e.target.classList.contains('bi-trash')) {
+        
+        const delId = e.target.id
+
+        try {
+            const response = await fetch(`http://localhost:3000/api/delete/user/${delId}`, {
+                method: "DELETE"
+            })
+
+            // Respons hadling
+            if (response.status === 204) {
+                console.log('DELETE USER SUCCESS')
+            }
+            else if (response.status === 400 || response.status === 404 || response.status === 500) {
+                console.log('DELETE USER FAILED')
+            } 
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
 })

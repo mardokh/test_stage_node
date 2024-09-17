@@ -62,6 +62,41 @@ exports.getUsers = async (req, res) => {
 }
 
 
+// Get user
+exports.getUser = async (req, res) => {
+
+    // Extract user id
+    const id = req.params.id
+
+    // Check if id is missing
+    if (!id) {
+        return res.status(400).json({ message: "Missing user id", data: [], type: "Failed" })
+    }
+
+    // Check if id is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: "Invalid user id", data: [], type: "Failed" })
+    }
+
+    try {
+        // Get user
+        const user = await Users.findById(id)
+
+        // Check if user exist
+        if (!user) {
+            return res.status(404).json({ message: "This user does not exist", data: [], type: "Failed"})
+        }
+
+        // Success response
+        return res.json({message: 'User getting successfully', data: user, type: "success" })
+    }
+    catch (err) {
+        console.log(err)
+        return res.status(500).json({ message: 'Server error !', data: [], type: "Failed"})
+    }
+}
+
+
 // Update user
 exports.updateUser = async (req, res) => {
 
