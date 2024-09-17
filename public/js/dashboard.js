@@ -41,7 +41,8 @@ window.onload = async () => {
         }
     } catch (err) {
         console.error('Error : ', err)
-    } finally {
+    } 
+    finally {
         // Hide loader
         loader.style.display = 'none'
     }

@@ -15,6 +15,7 @@
     <!-- Form add/update-->
      <section class="user_form_section hidden">
         <form>
+            <div id="form_loader" class=" user_form_loader hidden">wainting for finishing operation...</div>
             <i class="bi bi-x-circle-fill"></i>
             <div>
                 <input type="text" placeholder="Firs Name" id="firstName"/>
@@ -82,6 +83,7 @@
             </thead>
             <tbody id="tableBody"></tbody>
         </table>
+        <div id="table_loader" class="user_table_loader">waiting for get users list...</div>
     </section>
 </body>
 </html>

@@ -10,8 +10,6 @@ exports.createUser = async (req, res) => {
     // Extract inputs
     const { firstName, lastName, email, password} = req.body
 
-    console.log(req.body)
-
     try {
         // Search user in database
         const user = await Users.findOne({email})

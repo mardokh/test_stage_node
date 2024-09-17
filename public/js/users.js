@@ -11,12 +11,15 @@ const lastName = document.getElementById('lastName')
 const email = document.getElementById('email')
 const password = document.getElementById('password')
 const tbody = document.getElementById('tableBody')
+const tableLoader = document.getElementById('table_loader')
+const formLoader = document.getElementById('form_loader')
 let userId = ""
 
 /* *************************************************************************************************************************** */
 
 // ** GET USERS LIST HANDLER ** //
 const getUsers = async () => {
+
     try {
         const response = await fetch("http://localhost:3000/api/getting/users", {
             method: "GET"
@@ -58,8 +61,14 @@ const getUsers = async () => {
     } catch (err) {
         console.log(err)
     }
+    finally {
+        // Hide loader
+        tableLoader.style.display = 'none'
+    }
 }
-getUsers()
+
+setTimeout(() => {getUsers()}, 4000)
+
 
 /* *************************************************************************************************************************** */
 
@@ -68,6 +77,9 @@ usersForm.addEventListener('submit', async (e) => {
 
     // Prevent default submit
     e.preventDefault()
+
+    // Show loader
+    formLoader.classList.remove('hidden')
 
     // Catching input values
     const data = {
@@ -92,11 +104,11 @@ usersForm.addEventListener('submit', async (e) => {
             
             // Respons hadling
             if (response.status === 201) {
-                // Update users table list
+                formLoader.textContent = jsonResponse.message
                 getUsers()
             }
             else if (response.status === 409 || response.status === 500) {
-                console.log('ADD FAILED : ', jsonResponse)
+                formLoader.textContent = jsonResponse.message
             }
         }
         else if (submitBtn.value === "UPDATE") {
@@ -113,15 +125,20 @@ usersForm.addEventListener('submit', async (e) => {
             
             // Respons hadling
             if (response.status === 200) {
-                console.log('UPDATE SUCCESS : ', jsonResponse)
+                formLoader.textContent = jsonResponse.message
             }
             else if (response.status === 400 || response.status === 404 || response.status === 500) {
-                console.log('UPDATE FAILED : ', jsonResponse)
+                formLoader.textContent = jsonResponse.message
             }
         }
     }
     catch (err) {
         console.log(err)
+    }
+    finally {
+        // Hide loader
+        usersForm.classList.add('hidden')
+        formLoader.classList.add('hidden')
     }
 })
 
