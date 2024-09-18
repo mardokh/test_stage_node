@@ -15,7 +15,7 @@
     <!-- Form add/update-->
      <section class="user_form_section hidden">
         <form>
-            <div id="form_loader" class=" user_form_loader hidden">wainting for finishing operation...</div>
+            <div id="form_loader" class="user_form_loader">wainting for finishing operation...</div>
             <i class="bi bi-x-circle-fill"></i>
             <div>
                 <input type="text" placeholder="Firs Name" id="firstName"/>
@@ -71,17 +71,17 @@
         </div>
     </section>
     <section class="user_table_section">
-        <table>
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email Addres</th>
-                    <th>Timestamp</th>
-                    <th>Actions</th>
+        <table class="user_table">
+            <thead class="user_thead">
+                <tr class="user_tr">
+                    <th class="user_th">First Name</th>
+                    <th class="user_th">Last Name</th>
+                    <th class="user_th">Email Addres</th>
+                    <th class="user_th">Timestamp</th>
+                    <th class="user_th">Actions</th>
                 </tr>
             </thead>
-            <tbody id="tableBody"></tbody>
+            <tbody id="tableBody" class="table_body"></tbody>
         </table>
         <div id="table_loader" class="user_table_loader">waiting for get users list...</div>
     </section>

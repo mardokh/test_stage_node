@@ -332,28 +332,28 @@ nav ul li {
     margin-bottom: 150px;
 }
 
-.user_table_section table {
+.user_table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 15px;
     margin: 0px auto;
 }
 
-.user_table_section table thead {
+.user_thead {
     margin: 0 auto;
 }
 
-.user_table_section table thead tr {
+.user_tr {
     background-color: gainsboro;
     text-align: left;
     height: 50px;
 }
 
-.user_table_section table thead tr th {
+.user_th {
     padding-left: 90px;
 }
 
-.user_table_section table tbody tr td {
+.tbody_data {
     padding-left: 90px;
     background-color: white;
     height: 50px;
@@ -517,18 +517,7 @@ input:checked + .slider:before {
     background-color: rgb(25, 25, 25);
 }
 
-.bi-x-circle-fill {
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    cursor: pointer;
-}
-
-.bi-x-circle-fill:hover {
-    color: #333;
-}
-
-#form_loader {
+.user_form_section form .user_form_loader {
     position: absolute;
     top: 0;
     left: 0;
@@ -542,11 +531,37 @@ input:checked + .slider:before {
     color: #333;
     z-index: 100;
     text-align: center;
+    visibility: hidden;
 }
 
+.bi-x-circle-fill {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.bi-x-circle-fill:hover {
+    color: #333;
+}
 
 /* HIDDE ELEMENTS */
 
 .hidden {
     display: none;
 }
+
+
+@keyframes flash {
+    0%, 100% {
+        border-bottom: 5px solid green;
+    }
+    50% {
+        border-bottom: 5px solid transparent;
+    }
+}
+
+.flash-border {
+    animation: flash 1s ease-in-out 3;
+}
+

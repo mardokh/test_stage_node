@@ -33,12 +33,14 @@ const getUsers = async () => {
 
             jsonResponse.data.forEach(user => {
                 const row = document.createElement('tr')
+                row.setAttribute('class', 'tbody_row')
+                row.setAttribute('id', `${user._id}`)
                 row.innerHTML = `
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td>
-                    <td>${user.email}</td>
-                    <td>${new Date(user.timestamp)}</td>
-                    <td>
+                    <td class="tbody_data">${user.firstName}</td>
+                    <td class="tbody_data">${user.lastName}</td>
+                    <td class="tbody_data">${user.email}</td>
+                    <td class="tbody_data">${new Date(user.timestamp)}</td>
+                    <td class="tbody_data">
                         <div class="user_table_actions">
                             <div>
                                 <i class="bi bi-pencil-square" id="${user._id}"></i>
@@ -67,19 +69,18 @@ const getUsers = async () => {
     }
 }
 
-setTimeout(() => {getUsers()}, 4000)
-
+// Execute function
+getUsers()
 
 /* *************************************************************************************************************************** */
 
 // ** USER ADD/UPDATE SUBMIT FORM HANDLER ** //
 usersForm.addEventListener('submit', async (e) => {
-
     // Prevent default submit
     e.preventDefault()
 
     // Show loader
-    formLoader.classList.remove('hidden')
+    formLoader.style.visibility = 'visible'
 
     // Catching input values
     const data = {
@@ -95,50 +96,87 @@ usersForm.addEventListener('submit', async (e) => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
-                }, 
+                },
                 body: JSON.stringify(data)
             })
-    
+
             // Extrad json response
             const jsonResponse = await response.json()
-            
-            // Respons hadling
+
+            // Respons handling
             if (response.status === 201) {
                 formLoader.textContent = jsonResponse.message
-                getUsers()
+                
+                // Update users list
+                await getUsers()
+
+                setTimeout(() => {
+                    usersForm.classList.add('hidden')
+                    formLoader.style.visibility = 'hidden'
+                    
+                    // Scroll to bottom of the page
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                    })                  
+
+                    // Set style for new user
+                    let lastChild = tbody.lastElementChild
+                    if (lastChild) {
+                        let styleChildren = lastChild.querySelectorAll('.tbody_data')
+                        styleChildren.forEach(child => {
+                            child.classList.add('flash-border')
+                        })
+                    }
+                }, 1000)
             }
             else if (response.status === 409 || response.status === 500) {
                 formLoader.textContent = jsonResponse.message
             }
-        }
+        } 
         else if (submitBtn.value === "UPDATE") {
             const response = await fetch(`http://localhost:3000/api/update/user/${userId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
-                }, 
+                },
                 body: JSON.stringify(data)
             })
-    
+
             // Extrad json response
             const jsonResponse = await response.json()
-            
-            // Respons hadling
+
+            // Respons handling
             if (response.status === 200) {
                 formLoader.textContent = jsonResponse.message
+
+                // Update users list
+                await getUsers()
+
+                setTimeout(() => {
+                    usersForm.classList.add('hidden')
+                    formLoader.style.visibility = 'hidden'
+
+                    let Edited = document.getElementById(`${userId}`)
+
+                    Edited.scrollIntoView({
+                        behavior: 'smooth'
+                    })
+
+                    // Set style for new user
+                    let styleEdited = Edited.querySelectorAll('.tbody_data')
+                    styleEdited.forEach(child => {
+                        child.classList.add('flash-border')
+                    })
+                    
+                }, 1000)
             }
             else if (response.status === 400 || response.status === 404 || response.status === 500) {
                 formLoader.textContent = jsonResponse.message
             }
         }
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err)
-    }
-    finally {
-        // Hide loader
-        usersForm.classList.add('hidden')
-        formLoader.classList.add('hidden')
     }
 })
 
@@ -148,6 +186,10 @@ usersForm.addEventListener('submit', async (e) => {
 // Display form handler
 addUser.addEventListener('click', (e) => {
     usersForm.classList.remove('hidden')
+    firstName.value = ""
+    lastName.value = ""
+    email.value = ""
+    password.value = ""
     submitBtn.value = "ADD"
 })
 
