@@ -1,8 +1,8 @@
 // import modules
 const express = require('express')
 const usersController = require('../controllers/users.controller.js')
-const jwtMiddleware = require('../middleware/jwt.auth.js')
-const usersMiddleware = require('../middleware/users.check.js')
+//const jwtMiddleware = require('../middleware/jwt.auth.js')
+//const usersMiddleware = require('../middleware/users.check.js')
 
 // Initialize express router
 const usersRouter = express.Router()
@@ -22,6 +22,9 @@ usersRouter.put('/update/user/:id?', usersController.updateUser)
 
 // Delete user
 usersRouter.delete('/delete/user/:id?', usersController.deleteUser)
+
+// Search user 
+usersRouter.get('/search/users', usersController.searchUser)
 
 // Unable/Disable user
 //usersRouter.post('/status/user', jwtMiddleware.checkToken, usersController)

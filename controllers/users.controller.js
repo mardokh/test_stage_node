@@ -95,6 +95,30 @@ exports.getUser = async (req, res) => {
 }
 
 
+// Search user
+exports.searchUser = async (req, res) => {
+
+    const searchTerm = req.query.query
+
+    try {
+        // Find users
+        const users = await Users.find({
+            $or: [
+                { firstName: new RegExp(searchTerm, 'i') },
+                { lastName: new RegExp(searchTerm, 'i') }
+            ]
+        })
+
+        // Success response
+        return res.json({message: 'User finded successfully', data: users, type: "success" })
+    } 
+    catch (error) {
+        console.log(err)
+        return res.status(500).json({ message: 'Server error !', data: [], type: "Failed"})
+    }
+}
+
+
 // Update user
 exports.updateUser = async (req, res) => {
 

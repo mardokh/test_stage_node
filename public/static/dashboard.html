@@ -4,35 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../styles/styles.css">
-    <script src="../js/dashboard.js" async></script>
+    <link rel="preload" href="../styles/styles.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../styles/styles.css"></noscript>
+    <script src="../js/app.js" async></script>
 </head>
 <body>
     <div id="loader" class="loader">Loading...</div>
-    <header>
-        <div class="header_logo_nav">
-            <!-- logo -->
-            <div>
-                <img class="header_logo" src="../images/logo.png"/>
-            </div>
-            <!-- nav bar -->
-            <nav>
-                <ul>
-                    <li><a href="http://localhost:3000/dashboard">Dashboard</a></li>
-                    <li><a href="http://localhost:3000/users">Users</a></li>
-                </ul>
-            </nav>
-        </div>
-        <!-- title -->
-        <div class="header_title">
-            <h1>NODE TEST <span>APP</span></h1>
-        </div>
-        <!-- setting -->
-        <div class="header_setting">
-            <p>Chakib Benaissa</p>
-            <i class="bi bi-caret-down-fill"></i>
-        </div>
-    </header>
+    <div id="header"></div>
     <section class="dashboard_section">
         <h1 class="dashboard_title">Welcom to the Dashboard</h1>
         <div class="dashboard_sub_container">

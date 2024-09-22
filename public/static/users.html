@@ -7,64 +7,55 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../styles/styles.css">
-    <script src="../js/users.js" async></script>
+    <link rel="preload" href="../styles/styles.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../styles/styles.css"></noscript>
+    <script src="../js/app.js" async></script>
     <title>Users</title>
 </head>
 <body>
+
+
     <!-- Form add/update-->
-     <section class="user_form_section hidden">
-        <form>
-            <div id="form_loader" class="user_form_loader">wainting for finishing operation...</div>
+    <section class="user_form_section hidden">
+        <div class="user_form_modal">
             <i class="bi bi-x-circle-fill"></i>
-            <div>
-                <input type="text" placeholder="Firs Name" id="firstName"/>
+            <div id="form_loader" class="user_form_loader">wainting for finishing operation...</div>
+            <form class="user_form hidden">
+                <div>
+                    <input type="text" placeholder="Firs Name" id="firstName"/>
+                </div>
+                <div>
+                    <input type="text" placeholder="Last Name" id="lastName"/>
+                </div>
+                <div>
+                    <input type="email" placeholder="Email Address" id="email"/>
+                </div>
+                <div>
+                    <input type="password" placeholder="Password" id="password"/>
+                </div>
+                <div>
+                    <input type="submit" id="submitBtn">
+                </div>
+            </form>
+            <div class="user_modal hidden">
+                <p class="user_model_text">Doe you want delete this user ?</p>
+                <div class="user_modal_btn_container">
+                    <button class="user_modal_btn" id="user_delete_yes">YES</button>
+                    <button class="user_modal_btn" id="user_delete_no">NO</button>
+                </div>
             </div>
-            <div>
-                <input type="text" placeholder="Last Name" id="lastName"/>
-            </div>
-            <div>
-                <input type="email" placeholder="Email Address" id="email"/>
-            </div>
-            <div>
-                <input type="password" placeholder="Password" id="password"/>
-            </div>
-            <div>
-                <input type="submit" id="submitBtn">
-            </div>
-        </form> 
-     </section>
-    <header>
-        <div class="header_logo_nav">
-            <!-- logo -->
-            <div>
-                <img class="header_logo" src="../images/logo.png"/>
-            </div>
-            <!-- nav bar -->
-            <nav>
-                <ul>
-                    <li><a href="http://localhost:3000/dashboard">Dashboard</a></li>
-                    <li><a href="http://localhost:3000/users">Users</a></li>
-                </ul>
-            </nav>
         </div>
-        <!-- title -->
-        <div class="header_title">
-            <h1>NODE TEST <span>APP</span></h1>
-        </div>
-        <!-- setting -->
-        <div class="header_setting">
-            <p>Chakib Benaissa</p>
-            <i class="bi bi-caret-down-fill"></i>
-        </div>
-    </header>
+    </section>
+
+    <div id="header"></div>
     <section class="user_inputs_section">
         <h1>All users list and setting</h1>
         <div class="user_add_search">
             <div class="div_user">
                 <div class="user_search">
-                    <input type="text" placeholder="Serach users"/>
+                    <input type="text" placeholder="Serach users" id="user_search_input"/>
                     <i class="bi bi-search"></i>
+                    <ul class="user_search_list hidden"></ul>
                 </div>
                 <button id="addUser">ADD USERS</button>
             </div>
